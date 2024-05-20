@@ -1,14 +1,20 @@
-package ch03.ex5_2_2_RegularExpressionsAndTriplequotedStrings1
-
-fun parsePath(path: String) {
-    val regex = """(.+)/(.+)\.(.+)""".toRegex()
-    val matchResult = regex.matchEntire(path)
-    if (matchResult != null) {
-        val (directory, filename, extension) = matchResult.destructured
-        println("Dir: $directory, name: $filename, ext: $extension")
+// Define a function to parse the path
+function parsePath(path: string) {
+    // Define a regular expression to match the path
+    const regex = /(.+)\/(.+)\.(.+)/;
+    // Match the entire path against the regex
+    const matchResult = path.match(regex);
+    // If there is a match, destructure the result
+    if (matchResult) {
+        const [_, directory, filename, extension] = matchResult;
+        console.log(`Dir: ${directory}, name: ${filename}, ext: ${extension}`);
     }
 }
 
-fun main(args: Array<String>) {
-    parsePath("/Users/yole/kotlin-book/chapter.adoc")
+// Main function to call parsePath with a sample path
+function main() {
+    parsePath("/Users/yole/kotlin-book/chapter.adoc");
 }
+
+// Call the main function
+main();
