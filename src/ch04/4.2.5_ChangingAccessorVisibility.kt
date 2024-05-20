@@ -1,16 +1,17 @@
-package ch04.ex2_5_ChangingAccessorVisibility
-
 class LengthCounter {
-    var counter: Int = 0
-        private set
+    private _counter: number = 0;
 
-    fun addWord(word: String) {
-        counter += word.length
+    get counter(): number {
+        return this._counter;
+    }
+
+    addWord(word: string): void {
+        this._counter += word.length;
     }
 }
 
-fun main(args: Array<String>) {
-    val lengthCounter = LengthCounter()
-    lengthCounter.addWord("Hi!")
-    println(lengthCounter.counter)
+function main(args: string[]): void {
+    const lengthCounter = new LengthCounter();
+    lengthCounter.addWord("Hi!");
+    console.log(lengthCounter.counter);
 }
