@@ -1,11 +1,21 @@
-package ch02.ex4_4_2_UsingAnInCheck1
-
-fun recognize(c: Char) = when (c) {
-    in '0'..'9' -> "It's a digit!"
-    in 'a'..'z', in 'A'..'Z' -> "It's a letter!"
-    else -> "I don't know…​"
+enum CharacterType {
+    DIGIT = "It's a digit!",
+    LETTER = "It's a letter!",
+    UNKNOWN = "I don't know…​"
 }
 
-fun main(args: Array<String>) {
-    println(recognize('8'))
+function recognize(c: string): CharacterType {
+    if (c >= '0' && c <= '9') {
+        return CharacterType.DIGIT;
+    } else if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
+        return CharacterType.LETTER;
+    } else {
+        return CharacterType.UNKNOWN;
+    }
 }
+
+function main(args: string[]): void {
+    console.log(recognize('8'));
+}
+
+main([]);
