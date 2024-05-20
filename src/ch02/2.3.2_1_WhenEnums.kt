@@ -1,20 +1,34 @@
-package ch02.ex3_2_1_WhenEnums
-
-enum class Color {
-    RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET
+enum Color {
+    RED = "RED",
+    ORANGE = "ORANGE",
+    YELLOW = "YELLOW",
+    GREEN = "GREEN",
+    BLUE = "BLUE",
+    INDIGO = "INDIGO",
+    VIOLET = "VIOLET"
 }
 
-fun getMnemonic(color: Color) =
-    when (color) {
-        Color.RED -> "Richard"
-        Color.ORANGE -> "Of"
-        Color.YELLOW -> "York"
-        Color.GREEN -> "Gave"
-        Color.BLUE -> "Battle"
-        Color.INDIGO -> "In"
-        Color.VIOLET -> "Vain"
+function getMnemonic(color: Color): string {
+    switch (color) {
+        case Color.RED:
+            return "Richard";
+        case Color.ORANGE:
+            return "Of";
+        case Color.YELLOW:
+            return "York";
+        case Color.GREEN:
+            return "Gave";
+        case Color.BLUE:
+            return "Battle";
+        case Color.INDIGO:
+            return "In";
+        case Color.VIOLET:
+            return "Vain";
+        default:
+            return "";
     }
+}
 
-fun main(args: Array<String>) {
-    println(getMnemonic(Color.BLUE))
+function main(args: string[]): void {
+    console.log(getMnemonic(Color.BLUE));
 }
