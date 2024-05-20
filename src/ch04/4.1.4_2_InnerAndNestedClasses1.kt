@@ -1,7 +1,11 @@
-package ch04.ex1_4_2_InnerAndNestedClasses1
-
+// Define the Outer class
 class Outer {
-    inner class Inner {
-        fun getOuterReference(): Outer = this@Outer
+    // Define the Inner class within Outer
+    Inner = class {
+        // Method to get the reference to the Outer class instance
+        getOuterReference(): Outer {
+            return this.outer;
+        }
+        constructor(private outer: Outer) {}
     }
 }
