@@ -1,18 +1,16 @@
-package ch04.Button1
-
-import java.io.Serializable
-
-interface State: Serializable
-
-interface View {
-    fun getCurrentState(): State
-    fun restoreState(state: State) {}
+export interface State extends Serializable {}
+export interface View {
+    getCurrentState(): State;
+    restoreState(state: State): void;
 }
-
-class Button : View {
-    override fun getCurrentState(): State = ButtonState()
-
-    override fun restoreState(state: State) { /*...*/ }
-
-    class ButtonState : State { /*...*/ }
+export class Button implements View {
+    getCurrentState(): State {
+        return new ButtonState();
+    }
+    restoreState(state: State): void {
+        // ...
+    }
+}
+class ButtonState implements State {
+    // ...
 }
