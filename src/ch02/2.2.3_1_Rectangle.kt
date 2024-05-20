@@ -1,13 +1,22 @@
-package geometry.shapes
+// Define the Rectangle class
+class Rectangle {
+    height: number;
+    width: number;
 
-import java.util.Random
+    constructor(height: number, width: number) {
+        this.height = height;
+        this.width = width;
+    }
 
-class Rectangle(val height: Int, val width: Int) {
-    val isSquare: Boolean
-        get() = height == width
+    get isSquare(): boolean {
+        return this.height === this.width;
+    }
 }
 
-fun createRandomRectangle(): Rectangle {
-    val random = Random()
-    return Rectangle(random.nextInt(), random.nextInt())
+// Function to create a random rectangle
+function createRandomRectangle(): Rectangle {
+    const random = Math.random;
+    const height = Math.floor(random() * 100);
+    const width = Math.floor(random() * 100);
+    return new Rectangle(height, width);
 }
