@@ -1,16 +1,31 @@
-package ch04.ex3_1_2_2_ObjectEqualityEquals1
+// Define the Client class with properties and methods
+class Client {
+    name: string;
+    postalCode: number;
 
-class Client(val name: String, val postalCode: Int) {
-    override fun equals(other: Any?): Boolean {
-        if (other == null || other !is Client)
-            return false
-        return name == other.name &&
-               postalCode == other.postalCode
+    constructor(name: string, postalCode: number) {
+        this.name = name;
+        this.postalCode = postalCode;
     }
-    override fun toString() = "Client(name=$name, postalCode=$postalCode)"
+
+    equals(other: any): boolean {
+        if (other == null || !(other instanceof Client))
+            return false;
+        return this.name === other.name &&
+               this.postalCode === other.postalCode;
+    }
+
+    toString(): string {
+        return `Client(name=${this.name}, postalCode=${this.postalCode})`;
+    }
 }
 
-fun main(args: Array<String>) {
-    val processed = hashSetOf(Client("Alice", 342562))
-    println(processed.contains(Client("Alice", 342562)))
+// Main function to demonstrate the usage of Client class
+function main() {
+    const processed = new Set<Client>();
+    processed.add(new Client("Alice", 342562));
+    console.log(processed.has(new Client("Alice", 342562)));
 }
+
+// Execute the main function
+main();
