@@ -1,13 +1,10 @@
-package ch04.ex4_2_1_CompanionObjects
-
-class A {
-    companion object {
-        fun bar() {
-            println("Companion object called")
+namespace ch04.ex4_2_1_CompanionObjects {
+    class A {
+        static bar() {
+            console.log("Companion object called");
         }
     }
 }
-
-fun main(args: Array<String>) {
-    A.bar()
+function main(args: string[]) {
+    ch04.ex4_2_1_CompanionObjects.A.bar();
 }
