@@ -1,14 +1,12 @@
-package ch02.ex4_2_2_RangesProgressions1
-
-fun fizzBuzz(i: Int) = when {
-    i % 15 == 0 -> "FizzBuzz "
-    i % 3 == 0 -> "Fizz "
-    i % 5 == 0 -> "Buzz "
-    else -> "$i "
+function fizzBuzz(i: number): string {
+    if (i % 15 === 0) return "FizzBuzz ";
+    if (i % 3 === 0) return "Fizz ";
+    if (i % 5 === 0) return "Buzz ";
+    return `${i} `;
 }
-
-fun main(args: Array<String>) {
-    for (i in 100 downTo 1 step 2) {
-        print(fizzBuzz(i))
+function main(): void {
+    for (let i = 100; i >= 1; i -= 2) {
+        process.stdout.write(fizzBuzz(i));
     }
 }
+main();
