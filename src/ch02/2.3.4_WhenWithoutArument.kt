@@ -1,25 +1,31 @@
-package ch02.ex3_4_WhenWithoutArument
-
-import ch02.colors.Color
-import ch02.colors.Color.*
-
-fun mixOptimized(c1: Color, c2: Color) =
-    when {
-        (c1 == RED && c2 == YELLOW) ||
-        (c1 == YELLOW && c2 == RED) ->
-            ORANGE
-
-        (c1 == YELLOW && c2 == BLUE) ||
-        (c1 == BLUE && c2 == YELLOW) ->
-            GREEN
-
-        (c1 == BLUE && c2 == VIOLET) ||
-        (c1 == VIOLET && c2 == BLUE) ->
-            INDIGO
-
-        else -> throw Exception("Dirty color")
-    }
-
-fun main(args: Array<String>) {
-    println(mixOptimized(BLUE, YELLOW))
+// Define the Color enum
+enum Color {
+    RED,
+    YELLOW,
+    BLUE,
+    VIOLET,
+    ORANGE,
+    GREEN,
+    INDIGO
 }
+
+// Function to mix colors
+function mixOptimized(c1: Color, c2: Color): Color {
+    if ((c1 === Color.RED && c2 === Color.YELLOW) || (c1 === Color.YELLOW && c2 === Color.RED)) {
+        return Color.ORANGE;
+    } else if ((c1 === Color.YELLOW && c2 === Color.BLUE) || (c1 === Color.BLUE && c2 === Color.YELLOW)) {
+        return Color.GREEN;
+    } else if ((c1 === Color.BLUE && c2 === Color.VIOLET) || (c1 === Color.VIOLET && c2 === Color.BLUE)) {
+        return Color.INDIGO;
+    } else {
+        throw new Error("Dirty color");
+    }
+}
+
+// Main function to test the mixOptimized function
+function main() {
+    console.log(mixOptimized(Color.BLUE, Color.YELLOW));
+}
+
+// Call the main function
+main();
