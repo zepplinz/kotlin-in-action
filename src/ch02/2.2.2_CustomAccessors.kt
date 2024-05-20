@@ -1,13 +1,18 @@
-package ch02.ex2_2_CustomAccessors
+class Rectangle {
+    height: number;
+    width: number;
 
-class Rectangle(val height: Int, val width: Int) {
-    val isSquare: Boolean
-        get() {
-            return height == width
-        }
+    constructor(height: number, width: number) {
+        this.height = height;
+        this.width = width;
+    }
+
+    get isSquare(): boolean {
+        return this.height === this.width;
+    }
 }
 
-fun main(args: Array<String>) {
-    val rectangle = Rectangle(41, 43)
-    println(rectangle.isSquare)
+function main(args: string[]): void {
+    const rectangle = new Rectangle(41, 43);
+    console.log(rectangle.isSquare);
 }
