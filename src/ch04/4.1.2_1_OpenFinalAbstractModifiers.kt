@@ -1,15 +1,14 @@
-package ch04.ex1_2_1_OpenFinalAbstractModifiers
-
+// Define the Clickable interface
 interface Clickable {
-    fun click()
-    fun showOff() = println("I'm clickable!")
+    click(): void;
+    showOff(): void;
 }
-
-open class RichButton : Clickable {
-
-    fun disable() {}
-
-    open fun animate() {}
-
-    override fun click() {}
+// Implement the Clickable interface in the RichButton class
+class RichButton implements Clickable {
+    disable(): void {}
+    animate(): void {}
+    click(): void {}
+    showOff(): void {
+        console.log("I'm clickable!");
+    }
 }
