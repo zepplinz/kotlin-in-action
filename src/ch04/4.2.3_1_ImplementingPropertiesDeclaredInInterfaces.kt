@@ -1,22 +1,41 @@
-package ch04.ex2_3_1_ImplementingPropertiesDeclaredInInterfaces
-
-fun getFacebookName(accountId: Int) = "fb:$accountId"
-
+// Define the User interface
 interface User {
-    val nickname: String
-}
-class PrivateUser(override val nickname: String) : User
-
-class SubscribingUser(val email: String) : User {
-    override val nickname: String
-        get() = email.substringBefore('@')
+    nickname: string;
 }
 
-class FacebookUser(val accountId: Int) : User {
-    override val nickname = getFacebookName(accountId)
+// Function to get Facebook name
+function getFacebookName(accountId: number): string {
+    return `fb:${accountId}`;
 }
 
-fun main(args: Array<String>) {
-    println(PrivateUser("test@kotlinlang.org").nickname)
-    println(SubscribingUser("test@kotlinlang.org").nickname)
+// Class for PrivateUser implementing User interface
+class PrivateUser implements User {
+    constructor(public nickname: string) {}
 }
+
+// Class for SubscribingUser implementing User interface
+class SubscribingUser implements User {
+    constructor(public email: string) {}
+
+    get nickname(): string {
+        return this.email.substring(0, this.email.indexOf('@'));
+    }
+}
+
+// Class for FacebookUser implementing User interface
+class FacebookUser implements User {
+    nickname: string;
+
+    constructor(public accountId: number) {
+        this.nickname = getFacebookName(accountId);
+    }
+}
+
+// Main function to test the classes
+function main() {
+    console.log(new PrivateUser("test@kotlinlang.org").nickname);
+    console.log(new SubscribingUser("test@kotlinlang.org").nickname);
+}
+
+// Execute the main function
+main();
