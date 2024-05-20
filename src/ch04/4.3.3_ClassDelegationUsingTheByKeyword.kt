@@ -1,26 +1,69 @@
-package ch04.ex3_3_ClassDelegationUsingTheByKeyword
+class CountingSet<T> implements Set<T> {
+    private innerSet: Set<T>;
+    private _objectsAdded: number;
 
-import java.util.HashSet
-
-class CountingSet<T>(
-        val innerSet: MutableCollection<T> = HashSet<T>()
-) : MutableCollection<T> by innerSet {
-
-    var objectsAdded = 0
-
-    override fun add(element: T): Boolean {
-        objectsAdded++
-        return innerSet.add(element)
+    constructor(innerSet: Set<T> = new Set<T>()) {
+        this.innerSet = innerSet;
+        this._objectsAdded = 0;
     }
 
-    override fun addAll(c: Collection<T>): Boolean {
-        objectsAdded += c.size
-        return innerSet.addAll(c)
+    get objectsAdded(): number {
+        return this._objectsAdded;
+    }
+
+    add(element: T): this {
+        this._objectsAdded++;
+        this.innerSet.add(element);
+        return this;
+    }
+
+    addAll(elements: T[]): this {
+        this._objectsAdded += elements.length;
+        elements.forEach(element => this.innerSet.add(element));
+        return this;
+    }
+
+    get size(): number {
+        return this.innerSet.size;
+    }
+
+    has(element: T): boolean {
+        return this.innerSet.has(element);
+    }
+
+    delete(element: T): boolean {
+        return this.innerSet.delete(element);
+    }
+
+    clear(): void {
+        this.innerSet.clear();
+    }
+
+    values(): IterableIterator<T> {
+        return this.innerSet.values();
+    }
+
+    entries(): IterableIterator<[T, T]> {
+        return this.innerSet.entries();
+    }
+
+    keys(): IterableIterator<T> {
+        return this.innerSet.keys();
+    }
+
+    [Symbol.iterator](): IterableIterator<T> {
+        return this.innerSet[Symbol.iterator]();
+    }
+
+    forEach(callbackfn: (value: T, value2: T, set: Set<T>) => void, thisArg?: any): void {
+        this.innerSet.forEach(callbackfn, thisArg);
     }
 }
 
-fun main(args: Array<String>) {
-    val cset = CountingSet<Int>()
-    cset.addAll(listOf(1, 1, 2))
-    println("${cset.objectsAdded} objects were added, ${cset.size} remain")
+function main() {
+    const cset = new CountingSet<number>();
+    cset.addAll([1, 1, 2]);
+    console.log(`${cset.objectsAdded} objects were added, ${cset.size} remain`);
 }
+
+main();
