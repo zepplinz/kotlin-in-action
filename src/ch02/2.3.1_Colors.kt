@@ -1,5 +1,9 @@
-package ch02.colors
-
-enum class Color {
-    RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET
+enum Color {
+    RED = "RED",
+    ORANGE = "ORANGE",
+    YELLOW = "YELLOW",
+    GREEN = "GREEN",
+    BLUE = "BLUE",
+    INDIGO = "INDIGO",
+    VIOLET = "VIOLET"
 }
