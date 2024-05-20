@@ -1,6 +1,9 @@
-package ch03.ex2_1_MakingFunctionsEasierToCall
-
-fun main(args: Array<String>) {
-    val list = listOf(1, 2, 3)
-    println(list)
+// Define the main function
+function main(args: string[]): void {
+    // Create a list of numbers
+    const list: number[] = [1, 2, 3];
+    // Print the list to the console
+    console.log(list);
 }
+// Call the main function with an empty array as argument
+main([]);
