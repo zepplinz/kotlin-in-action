@@ -1,14 +1,16 @@
-package ch01.ex1_ATasteOfKotlin
-
-data class Person(val name: String,
-                  val age: Int? = null)
-
-fun main(args: Array<String>) {
-    val persons = listOf(Person("Alice"),
-                         Person("Bob", age = 29))
-
-    val oldest = persons.maxBy { it.age ?: 0 }
-    println("The oldest is: $oldest")
+// Define the Person interface
+interface Person {
+    name: string;
+    age?: number | null;
 }
-
-// The oldest is: Person(name=Bob, age=29)
+// Main function
+function main() {
+    const persons: Person[] = [
+        { name: "Alice" },
+        { name: "Bob", age: 29 }
+    ];
+    const oldest = persons.reduce((max, person) => (person.age ?? 0) > (max.age ?? 0) ? person : max, persons[0]);
+    console.log(`The oldest is: ${JSON.stringify(oldest)}`);
+}
+// Execute the main function
+main();
