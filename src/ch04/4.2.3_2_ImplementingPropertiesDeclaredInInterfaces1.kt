@@ -1,7 +1,15 @@
-package ch04.ex2_3_2_ImplementingPropertiesDeclaredInInterfaces1
-
+// Define the User interface
 interface User {
-    val email: String
-    val nickname: String
-        get() = email.substringBefore('@')
+    email: string;
+    nickname: string;
+}
+// Implement the User interface
+class UserImpl implements User {
+    email: string;
+    constructor(email: string) {
+        this.email = email;
+    }
+    get nickname(): string {
+        return this.email.substring(0, this.email.indexOf('@'));
+    }
 }
