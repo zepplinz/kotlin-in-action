@@ -1,18 +1,24 @@
-package ch04.ex4_1_1_ObjectDeclarations
-
-import java.util.Comparator
-import java.io.File
-
-object CaseInsensitiveFileComparator : Comparator<File> {
-    override fun compare(file1: File, file2: File): Int {
-        return file1.path.compareTo(file2.path,
-                ignoreCase = true)
+// Define a new type for File
+type File = {
+    path: string;
+};
+// Define a new interface for Comparator
+interface Comparator<T> {
+    compare(a: T, b: T): number;
+}
+// Implement the CaseInsensitiveFileComparator object
+const CaseInsensitiveFileComparator: Comparator<File> = {
+    compare(file1: File, file2: File): number {
+        return file1.path.localeCompare(file2.path, undefined, { sensitivity: 'base' });
     }
+};
+// Main function
+function main() {
+    console.log(CaseInsensitiveFileComparator.compare(
+        { path: "/User" }, { path: "/user" }));
+    
+    const files: File[] = [{ path: "/Z" }, { path: "/a" }];
+    console.log(files.sort(CaseInsensitiveFileComparator.compare));
 }
-
-fun main(args: Array<String>) {
-    println(CaseInsensitiveFileComparator.compare(
-        File("/User"), File("/user")))
-    val files = listOf(File("/Z"), File("/a"))
-    println(files.sortedWith(CaseInsensitiveFileComparator))
-}
+// Execute the main function
+main();
