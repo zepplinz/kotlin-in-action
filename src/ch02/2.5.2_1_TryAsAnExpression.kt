@@ -1,19 +1,26 @@
-package ch02.ex5_2_1_TryAsAnExpression
-
-import java.io.BufferedReader
-import java.io.StringReader
-
-fun readNumber(reader: BufferedReader) {
-    val number = try {
-        Integer.parseInt(reader.readLine())
-    } catch (e: NumberFormatException) {
-        return
-    }
-
-    println(number)
+import * as readline from 'readline';
+import { StringDecoder } from 'string_decoder';
+function readNumber(reader: readline.Interface) {
+    reader.question('', (input: string) => {
+        const number = (() => {
+            try {
+                return parseInt(input);
+            } catch (e) {
+                if (e instanceof Error && e.name === 'NumberFormatException') {
+                    return;
+                }
+            }
+        })();
+        if (number !== undefined) {
+            console.log(number);
+        }
+    });
 }
-
-fun main(args: Array<String>) {
-    val reader = BufferedReader(StringReader("not a number"))
-    readNumber(reader)
+function main() {
+    const reader = readline.createInterface({
+        input: new StringDecoder('utf8').end('not a number'),
+        output: process.stdout
+    });
+    readNumber(reader);
 }
+main();
