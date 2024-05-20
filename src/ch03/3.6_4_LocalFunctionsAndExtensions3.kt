@@ -1,25 +1,25 @@
-package ch03.ex6_4_LocalFunctionsAndExtensions3
-
-class User(val id: Int, val name: String, val address: String)
-
-fun User.validateBeforeSave() {
-    fun validate(value: String, fieldName: String) {
-        if (value.isEmpty()) {
-            throw IllegalArgumentException(
-               "Can't save user $id: empty $fieldName")
+// Define the User class
+class User {
+    constructor(public id: number, public name: string, public address: string) {}
+}
+// Extend the User class with a validateBeforeSave method
+function validateBeforeSave(user: User) {
+    function validate(value: string, fieldName: string) {
+        if (value.length === 0) {
+            throw new Error(`Can't save user ${user.id}: empty ${fieldName}`);
         }
     }
-
-    validate(name, "Name")
-    validate(address, "Address")
+    validate(user.name, "Name");
+    validate(user.address, "Address");
 }
-
-fun saveUser(user: User) {
-    user.validateBeforeSave()
-
+// Function to save the user
+function saveUser(user: User) {
+    validateBeforeSave(user);
     // Save user to the database
 }
-
-fun main(args: Array<String>) {
-    saveUser(User(1, "", ""))
+// Main function to execute the saveUser function
+function main() {
+    saveUser(new User(1, "", ""));
 }
+// Execute the main function
+main();
