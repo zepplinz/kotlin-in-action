@@ -1,9 +1,12 @@
-package ch02.ex4_4_1_UsingAnInCheck
-
-fun isLetter(c: Char) = c in 'a'..'z' || c in 'A'..'Z'
-fun isNotDigit(c: Char) = c !in '0'..'9'
-
-fun main(args: Array<String>) {
-    println(isLetter('q'))
-    println(isNotDigit('x'))
+type Char = string;
+function isLetter(c: Char): boolean {
+    return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
 }
+function isNotDigit(c: Char): boolean {
+    return !(c >= '0' && c <= '9');
+}
+function main(args: string[]): void {
+    console.log(isLetter('q'));
+    console.log(isNotDigit('x'));
+}
+main([]);
