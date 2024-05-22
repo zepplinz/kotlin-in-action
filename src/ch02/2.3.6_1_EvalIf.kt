@@ -1,18 +1,33 @@
-package ch02.EvalIf
+interface Expr {}
 
-interface Expr
-class Num(val value: Int) : Expr
-class Sum(val left: Expr, val right: Expr) : Expr
+class Num implements Expr {
+    value: number;
 
-fun eval(e: Expr): Int =
-    if (e is Num) {
-        e.value
-    } else if (e is Sum) {
-        eval(e.right) + eval(e.left)
-    } else {
-        throw IllegalArgumentException("Unknown expression")
+    constructor(value: number) {
+        this.value = value;
     }
+}
 
-fun main(args: Array<String>) {
-    println(eval(Sum(Num(1), Num(2))))
+class Sum implements Expr {
+    left: Expr;
+    right: Expr;
+
+    constructor(left: Expr, right: Expr) {
+        this.left = left;
+        this.right = right;
+    }
+}
+
+function eval(e: Expr): number {
+    if (e instanceof Num) {
+        return e.value;
+    } else if (e instanceof Sum) {
+        return eval(e.right) + eval(e.left);
+    } else {
+        throw new Error("Unknown expression");
+    }
+}
+
+function main(args: string[]): void {
+    console.log(eval(new Sum(new Num(1), new Num(2))));
 }
