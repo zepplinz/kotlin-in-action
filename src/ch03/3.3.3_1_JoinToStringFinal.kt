@@ -1,23 +1,29 @@
-package ch03.JoinToStringFinal
+// Define a generic type T
+type Collection<T> = Array<T>;
 
-fun <T> Collection<T>.joinToString(
-        separator: String = ", ",
-        prefix: String = "",
-        postfix: String = ""
-): String {
-    val result = StringBuilder(prefix)
+// Define the joinToString function
+function joinToString<T>(
+    collection: Collection<T>,
+    separator: string = ", ",
+    prefix: string = "",
+    postfix: string = ""
+): string {
+    let result = prefix;
 
-    for ((index, element) in this.withIndex()) {
-        if (index > 0) result.append(separator)
-        result.append(element)
-    }
+    collection.forEach((element, index) => {
+        if (index > 0) result += separator;
+        result += element;
+    });
 
-    result.append(postfix)
-    return result.toString()
+    result += postfix;
+    return result;
 }
 
-fun main(args: Array<String>) {
-    val list = listOf(1, 2, 3)
-    println(list.joinToString(separator = "; ",
-          prefix = "(", postfix = ")"))
+// Main function to test joinToString
+function main() {
+    const list: Collection<number> = [1, 2, 3];
+    console.log(joinToString(list, "; ", "(", ")"));
 }
+
+// Execute the main function
+main();
