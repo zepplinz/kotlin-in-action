@@ -1,12 +1,11 @@
-package ch04.ex1_1_1_InterfacesInKotlin
-
 interface Clickable {
-    fun click()
+    click(): void;
 }
-class Button : Clickable {
-    override fun click() = println("I was clicked")
+class Button implements Clickable {
+    click(): void {
+        console.log("I was clicked");
+    }
 }
-
-fun main(args: Array<String>) {
-    Button().click()
+function main(args: string[]): void {
+    new Button().click();
 }
