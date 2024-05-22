@@ -1,5 +1,6 @@
-package ch03.ex5_1_2_SplittingStrings1
-
-fun main(args: Array<String>) {
-    println("12.345-6.A".split(".", "-"))
+// Define the main function
+function main(args: string[]): void {
+    console.log("12.345-6.A".split(/\.|-/));
 }
+// Call the main function with an example argument
+main(["12.345-6.A"]);
