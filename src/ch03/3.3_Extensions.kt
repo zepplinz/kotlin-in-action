@@ -1,7 +1,8 @@
-package strings
-
-fun String.lastChar(): Char = this.get(this.length - 1)
-
-fun main(args: Array<String>) {
-    println("Kotlin".lastChar())
+namespace strings {
+    String.prototype.lastChar = function(): string {
+        return this.charAt(this.length - 1);
+    }
+}
+function main(args: string[]): void {
+    console.log("Kotlin".lastChar());
 }
