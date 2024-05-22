@@ -1,19 +1,21 @@
-package ch04.ex4_2_2_CompanionObjects1
+function getFacebookName(accountId: number): string {
+    return `fb:${accountId}`;
+}
 
-fun getFacebookName(accountId: Int) = "fb:$accountId"
+class User {
+    private constructor(public nickname: string) {}
 
-class User private constructor(val nickname: String) {
-    companion object {
-        fun newSubscribingUser(email: String) =
-            User(email.substringBefore('@'))
+    static newSubscribingUser(email: string): User {
+        return new User(email.substring(0, email.indexOf('@')));
+    }
 
-        fun newFacebookUser(accountId: Int) =
-            User(getFacebookName(accountId))
+    static newFacebookUser(accountId: number): User {
+        return new User(getFacebookName(accountId));
     }
 }
 
-fun main(args: Array<String>) {
-    val subscribingUser = User.newSubscribingUser("bob@gmail.com")
-    val facebookUser = User.newFacebookUser(4)
-    println(subscribingUser.nickname)
+function main(args: string[]): void {
+    const subscribingUser = User.newSubscribingUser("bob@gmail.com");
+    const facebookUser = User.newFacebookUser(4);
+    console.log(subscribingUser.nickname);
 }
