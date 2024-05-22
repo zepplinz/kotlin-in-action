@@ -1,16 +1,14 @@
-package ch04.ex1_5_2_SealedClasses1
-
-sealed class Expr {
-    class Num(val value: Int) : Expr()
-    class Sum(val left: Expr, val right: Expr) : Expr()
-}
-
-fun eval(e: Expr): Int =
-    when (e) {
-        is Expr.Num -> e.value
-        is Expr.Sum -> eval(e.right) + eval(e.left)
+type Expr = 
+    | { type: 'Num', value: number }
+    | { type: 'Sum', left: Expr, right: Expr };
+function eval(e: Expr): number {
+    switch (e.type) {
+        case 'Num':
+            return e.value;
+        case 'Sum':
+            return eval(e.left) + eval(e.right);
     }
-
-fun main(args: Array<String>) {
-    println(eval(Expr.Sum(Expr.Sum(Expr.Num(1), Expr.Num(2)), Expr.Num(4))))
+}
+function main() {
+    console.log(eval({ type: 'Sum', left: { type: 'Sum', left: { type: 'Num', value: 1 }, right: { type: 'Num', value: 2 } }, right: { type: 'Num', value: 4 } }));
 }
