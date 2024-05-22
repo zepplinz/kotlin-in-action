@@ -1,13 +1,20 @@
-package ch04.ex2_1_InitializingClasses
+class User {
+    nickname: string;
+    isSubscribed: boolean;
 
-class User(val nickname: String,
-           val isSubscribed: Boolean = true)
-
-fun main(args: Array<String>) {
-    val alice = User("Alice")
-    println(alice.isSubscribed)
-    val bob = User("Bob", false)
-    println(bob.isSubscribed)
-    val carol = User("Carol", isSubscribed = false)
-    println(carol.isSubscribed)
+    constructor(nickname: string, isSubscribed: boolean = true) {
+        this.nickname = nickname;
+        this.isSubscribed = isSubscribed;
+    }
 }
+
+function main() {
+    const alice = new User("Alice");
+    console.log(alice.isSubscribed);
+    const bob = new User("Bob", false);
+    console.log(bob.isSubscribed);
+    const carol = new User("Carol", false);
+    console.log(carol.isSubscribed);
+}
+
+main();
