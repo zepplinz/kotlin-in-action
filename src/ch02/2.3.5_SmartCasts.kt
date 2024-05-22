@@ -1,20 +1,33 @@
-package ch02.ex3_5_SmartCasts
+interface Expr {}
 
-interface Expr
-class Num(val value: Int) : Expr
-class Sum(val left: Expr, val right: Expr) : Expr
-
-fun eval(e: Expr): Int {
-    if (e is Num) {
-        val n = e as Num
-        return n.value
+class Num implements Expr {
+    value: number;
+    constructor(value: number) {
+        this.value = value;
     }
-    if (e is Sum) {
-        return eval(e.right) + eval(e.left)
-    }
-    throw IllegalArgumentException("Unknown expression")
 }
 
-fun main(args: Array<String>) {
-    println(eval(Sum(Sum(Num(1), Num(2)), Num(4))))
+class Sum implements Expr {
+    left: Expr;
+    right: Expr;
+    constructor(left: Expr, right: Expr) {
+        this.left = left;
+        this.right = right;
+    }
 }
+
+function eval(e: Expr): number {
+    if (e instanceof Num) {
+        return e.value;
+    }
+    if (e instanceof Sum) {
+        return eval(e.right) + eval(e.left);
+    }
+    throw new Error("Unknown expression");
+}
+
+function main() {
+    console.log(eval(new Sum(new Sum(new Num(1), new Num(2)), new Num(4))));
+}
+
+main();
