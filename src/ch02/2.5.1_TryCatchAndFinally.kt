@@ -1,22 +1,19 @@
-package ch02.ex5_1_TryCatchAndFinally
-
-import java.io.BufferedReader
-import java.io.StringReader
-
-fun readNumber(reader: BufferedReader): Int? {
+import { StringReader, BufferedReader } from 'some-library';
+function readNumber(reader: BufferedReader): number | null {
     try {
-        val line = reader.readLine()
-        return Integer.parseInt(line)
-    }
-    catch (e: NumberFormatException) {
-        return null
-    }
-    finally {
-        reader.close()
+        const line = reader.readLine();
+        return parseInt(line, 10);
+    } catch (e) {
+        if (e instanceof NumberFormatException) {
+            return null;
+        } else {
+            throw e;
+        }
+    } finally {
+        reader.close();
     }
 }
-
-fun main(args: Array<String>) {
-    val reader = BufferedReader(StringReader("239"))
-    println(readNumber(reader))
+function main(args: string[]): void {
+    const reader = new BufferedReader(new StringReader("239"));
+    console.log(readNumber(reader));
 }
