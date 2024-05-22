@@ -1,14 +1,12 @@
-package ch02.FizzBuzz
-
-fun fizzBuzz(i: Int) = when {
-    i % 15 == 0 -> "FizzBuzz "
-    i % 3 == 0 -> "Fizz "
-    i % 5 == 0 -> "Buzz "
-    else -> "$i "
+function fizzBuzz(i: number): string {
+    if (i % 15 === 0) return "FizzBuzz ";
+    if (i % 3 === 0) return "Fizz ";
+    if (i % 5 === 0) return "Buzz ";
+    return `${i} `;
 }
-
-fun main(args: Array<String>) {
-    for (i in 1..100) {
-        print(fizzBuzz(i))
+function main(): void {
+    for (let i = 1; i <= 100; i++) {
+        process.stdout.write(fizzBuzz(i));
     }
 }
+main();
