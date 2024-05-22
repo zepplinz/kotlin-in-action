@@ -1,11 +1,14 @@
-package ch02.ex4_4_2_UsingAnInCheck1
-
-fun recognize(c: Char) = when (c) {
-    in '0'..'9' -> "It's a digit!"
-    in 'a'..'z', in 'A'..'Z' -> "It's a letter!"
-    else -> "I don't know…​"
+// Define a function to recognize characters
+function recognize(c: string): string {
+    if (c >= '0' && c <= '9') {
+        return "It's a digit!";
+    } else if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
+        return "It's a letter!";
+    } else {
+        return "I don't know…​";
+    }
 }
-
-fun main(args: Array<String>) {
-    println(recognize('8'))
+// Main function to test the recognize function
+function main(args: string[]): void {
+    console.log(recognize('8'));
 }
