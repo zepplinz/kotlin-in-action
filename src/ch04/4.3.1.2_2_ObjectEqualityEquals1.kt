@@ -1,16 +1,27 @@
-package ch04.ex3_1_2_2_ObjectEqualityEquals1
-
-class Client(val name: String, val postalCode: Int) {
-    override fun equals(other: Any?): Boolean {
-        if (other == null || other !is Client)
-            return false
-        return name == other.name &&
-               postalCode == other.postalCode
+type Client = {
+    name: string;
+    postalCode: number;
+};
+class ClientClass {
+    name: string;
+    postalCode: number;
+    constructor(name: string, postalCode: number) {
+        this.name = name;
+        this.postalCode = postalCode;
     }
-    override fun toString() = "Client(name=$name, postalCode=$postalCode)"
+    equals(other: any): boolean {
+        if (other == null || !(other instanceof ClientClass))
+            return false;
+        return this.name === other.name &&
+               this.postalCode === other.postalCode;
+    }
+    toString(): string {
+        return `Client(name=${this.name}, postalCode=${this.postalCode})`;
+    }
 }
-
-fun main(args: Array<String>) {
-    val processed = hashSetOf(Client("Alice", 342562))
-    println(processed.contains(Client("Alice", 342562)))
+function main() {
+    const processed = new Set<ClientClass>();
+    processed.add(new ClientClass("Alice", 342562));
+    console.log(processed.has(new ClientClass("Alice", 342562)));
 }
+main();
