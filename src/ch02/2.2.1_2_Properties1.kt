@@ -1,12 +1,13 @@
-package ch02.person
-
-class Person(
-    val name: String,
-    var isMarried: Boolean
-)
-
-fun main(args: Array<String>) {
-    val person = Person("Bob", true)
-    println(person.name)
-    println(person.isMarried)
+// Define a new type for Person
+type Person = {
+    name: string;
+    isMarried: boolean;
+};
+// Main function
+function main() {
+    const person: Person = { name: "Bob", isMarried: true };
+    console.log(person.name);
+    console.log(person.isMarried);
 }
+// Call the main function
+main();
