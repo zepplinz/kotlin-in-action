@@ -1,24 +1,27 @@
-package ch02.ex3_7_WhenBlockBranch
+interface Expr {}
 
-interface Expr
-class Num(val value: Int) : Expr
-class Sum(val left: Expr, val right: Expr) : Expr
+class Num implements Expr {
+    constructor(public value: number) {}
+}
 
-fun evalWithLogging(e: Expr): Int =
-    when (e) {
-        is Num -> {
-            println("num: ${e.value}")
-            e.value
-        }
-        is Sum -> {
-            val left = evalWithLogging(e.left)
-            val right = evalWithLogging(e.right)
-            println("sum: $left + $right")
-            left + right
-        }
-        else -> throw IllegalArgumentException("Unknown expression")
+class Sum implements Expr {
+    constructor(public left: Expr, public right: Expr) {}
+}
+
+function evalWithLogging(e: Expr): number {
+    if (e instanceof Num) {
+        console.log(`num: ${e.value}`);
+        return e.value;
+    } else if (e instanceof Sum) {
+        const left = evalWithLogging(e.left);
+        const right = evalWithLogging(e.right);
+        console.log(`sum: ${left} + ${right}`);
+        return left + right;
+    } else {
+        throw new Error("Unknown expression");
     }
+}
 
-fun main(args: Array<String>) {
-    println(evalWithLogging(Sum(Sum(Num(1), Num(2)), Num(4))))
+function main() {
+    console.log(evalWithLogging(new Sum(new Sum(new Num(1), new Num(2)), new Num(4))));
 }
