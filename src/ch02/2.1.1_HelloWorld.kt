@@ -1,5 +1,4 @@
-package ch02.ex1_1_HelloWorld
-
-fun main(args: Array<String>) {
-    println("Hello, world!")
+// Define the main function
+function main(args: string[]): void {
+    console.log("Hello, world!");
 }
