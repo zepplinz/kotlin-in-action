@@ -1,15 +1,13 @@
-package ch03.ParsePath
+function parsePath(path: string): void {
+    const directory = path.substring(0, path.lastIndexOf("/"));
+    const fullName = path.substring(path.lastIndexOf("/") + 1);
 
-fun parsePath(path: String) {
-    val directory = path.substringBeforeLast("/")
-    val fullName = path.substringAfterLast("/")
+    const fileName = fullName.substring(0, fullName.lastIndexOf("."));
+    const extension = fullName.substring(fullName.lastIndexOf(".") + 1);
 
-    val fileName = fullName.substringBeforeLast(".")
-    val extension = fullName.substringAfterLast(".")
-
-    println("Dir: $directory, name: $fileName, ext: $extension")
+    console.log(`Dir: ${directory}, name: ${fileName}, ext: ${extension}`);
 }
 
-fun main(args: Array<String>) {
-    parsePath("/Users/yole/kotlin-book/chapter.adoc")
+function main(args: string[]): void {
+    parsePath("/Users/yole/kotlin-book/chapter.adoc");
 }
