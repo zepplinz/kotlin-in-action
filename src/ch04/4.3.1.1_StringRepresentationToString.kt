@@ -1,10 +1,23 @@
-package ch04.ex3_1_1_StringRepresentationToString
+// Define the Client class
+class Client {
+    name: string;
+    postalCode: number;
 
-class Client(val name: String, val postalCode: Int) {
-    override fun toString() = "Client(name=$name, postalCode=$postalCode)"
+    constructor(name: string, postalCode: number) {
+        this.name = name;
+        this.postalCode = postalCode;
+    }
+
+    toString(): string {
+        return `Client(name=${this.name}, postalCode=${this.postalCode})`;
+    }
 }
 
-fun main(args: Array<String>) {
-    val client1 = Client("Alice", 342562)
-    println(client1)
+// Main function
+function main() {
+    const client1 = new Client("Alice", 342562);
+    console.log(client1.toString());
 }
+
+// Execute main function
+main();
