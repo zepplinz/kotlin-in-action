@@ -1,15 +1,26 @@
-package ch02.GetWarmth
-
-enum class Color {
-    RED, ORANGE, YELLOW, GREEN, BLUE, INDIGO, VIOLET
+enum Color {
+    RED = "RED",
+    ORANGE = "ORANGE",
+    YELLOW = "YELLOW",
+    GREEN = "GREEN",
+    BLUE = "BLUE",
+    INDIGO = "INDIGO",
+    VIOLET = "VIOLET"
 }
-
-fun getWarmth(color: Color) = when(color) {
-    Color.RED, Color.ORANGE, Color.YELLOW -> "warm"
-    Color.GREEN -> "neutral"
-    Color.BLUE, Color.INDIGO, Color.VIOLET -> "cold"
+function getWarmth(color: Color): string {
+    switch(color) {
+        case Color.RED:
+        case Color.ORANGE:
+        case Color.YELLOW:
+            return "warm";
+        case Color.GREEN:
+            return "neutral";
+        case Color.BLUE:
+        case Color.INDIGO:
+        case Color.VIOLET:
+            return "cold";
+    }
 }
-
-fun main(args: Array<String>) {
-    println(getWarmth(Color.ORANGE))
+function main(args: string[]): void {
+    console.log(getWarmth(Color.ORANGE));
 }
