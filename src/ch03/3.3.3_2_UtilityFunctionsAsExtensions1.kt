@@ -1,23 +1,30 @@
-package ch03.ex3_3_2_UtilityFunctionsAsExtensions1
-
-fun <T> Collection<T>.joinToString(
-        separator: String = ", ",
-        prefix: String = "",
-        postfix: String = ""
-): String {
-    val result = StringBuilder(prefix)
-
-    for ((index, element) in this.withIndex()) {
-        if (index > 0) result.append(separator)
-        result.append(element)
-    }
-
-    result.append(postfix)
-    return result.toString()
+// Define a type for the joinToString function parameters
+type JoinToStringParams<T> = {
+    separator?: string;
+    prefix?: string;
+    postfix?: string;
+};
+// Extend the Array prototype to include the joinToString method
+interface Array<T> {
+    joinToString(params?: JoinToStringParams<T>): string;
 }
-
-
-fun main(args: Array<String>) {
-    val list = arrayListOf(1, 2, 3)
-    println(list.joinToString(" "))
+// Implement the joinToString method
+Array.prototype.joinToString = function<T>(
+    this: T[],
+    { separator = ", ", prefix = "", postfix = "" }: JoinToStringParams<T> = {}
+): string {
+    let result = prefix;
+    this.forEach((element, index) => {
+        if (index > 0) result += separator;
+        result += element;
+    });
+    result += postfix;
+    return result;
+};
+// Main function to test the joinToString method
+function main() {
+    const list = [1, 2, 3];
+    console.log(list.joinToString({ separator: " " }));
 }
+// Execute the main function
+main();
