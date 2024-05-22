@@ -1,16 +1,23 @@
-package ch04.ex2_4_AccessingABackingFieldFromAGetterOrSetter
+class User {
+    private _address: string = "unspecified";
 
-class User(val name: String) {
-    var address: String = "unspecified"
-        set(value: String) {
-            println("""
-                Address was changed for $name:
-                "$field" -> "$value".""".trimIndent())
-            field = value
-        }
+    constructor(public name: string) {}
+
+    get address(): string {
+        return this._address;
+    }
+
+    set address(value: string) {
+        console.log(`
+            Address was changed for ${this.name}:
+            "${this._address}" -> "${value}".`.trim());
+        this._address = value;
+    }
 }
 
-fun main(args: Array<String>) {
-    val user = User("Alice")
-    user.address = "Elsenheimerstrasse 47, 80687 Muenchen"
+function main() {
+    const user = new User("Alice");
+    user.address = "Elsenheimerstrasse 47, 80687 Muenchen";
 }
+
+main();
