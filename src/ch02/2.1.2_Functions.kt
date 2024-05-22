@@ -1,9 +1,10 @@
-package ch02.ex1_2_Functions
-
-fun max(a: Int, b: Int): Int {
-    return if (a > b) a else b
+// Define a function to find the maximum of two numbers
+function max(a: number, b: number): number {
+    return a > b ? a : b;
 }
-
-fun main(args: Array<String>) {
-    println(max(1, 2))
+// Main function to execute the code
+function main(args: string[]): void {
+    console.log(max(1, 2));
 }
+// Execute the main function with an empty array as argument
+main([]);
