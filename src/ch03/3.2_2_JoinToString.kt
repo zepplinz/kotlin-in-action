@@ -1,24 +1,18 @@
-package ch03.JoinToString
-
-fun <T> joinToString(
-        collection: Collection<T>,
-        separator: String,
-        prefix: String,
-        postfix: String
-): String {
-
-    val result = StringBuilder(prefix)
-
-    for ((index, element) in collection.withIndex()) {
-        if (index > 0) result.append(separator)
-        result.append(element)
-    }
-
-    result.append(postfix)
-    return result.toString()
+function joinToString<T>(
+    collection: T[],
+    separator: string,
+    prefix: string,
+    postfix: string
+): string {
+    let result = prefix;
+    collection.forEach((element, index) => {
+        if (index > 0) result += separator;
+        result += element;
+    });
+    result += postfix;
+    return result;
 }
-
-fun main(args: Array<String>) {
-    val list = listOf(1, 2, 3)
-    println(joinToString(list, "; ", "(", ")"))
+function main() {
+    const list = [1, 2, 3];
+    console.log(joinToString(list, "; ", "(", ")"));
 }
