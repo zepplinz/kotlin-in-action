@@ -1,29 +1,41 @@
-package ch04.main
-
-class Button : Clickable, Focusable {
-    override fun click() = println("I was clicked")
-
-    override fun showOff() {
-        super<Clickable>.showOff()
-        super<Focusable>.showOff()
-    }
-}
-
 interface Clickable {
-    fun click()
-    fun showOff() = println("I'm clickable!")
+    click(): void;
+    showOff(): void;
 }
 
 interface Focusable {
-    fun setFocus(b: Boolean) =
-        println("I ${if (b) "got" else "lost"} focus.")
-
-    fun showOff() = println("I'm focusable!")
+    setFocus(b: boolean): void;
+    showOff(): void;
 }
 
-fun main(args: Array<String>) {
-    val button = Button()
-    button.showOff()
-    button.setFocus(true)
-    button.click()
+class Button implements Clickable, Focusable {
+    click(): void {
+        console.log("I was clicked");
+    }
+
+    showOff(): void {
+        (Clickable.prototype.showOff as () => void).call(this);
+        (Focusable.prototype.showOff as () => void).call(this);
+    }
+
+    setFocus(b: boolean): void {
+        console.log(`I ${b ? "got" : "lost"} focus.`);
+    }
 }
+
+Clickable.prototype.showOff = function() {
+    console.log("I'm clickable!");
+};
+
+Focusable.prototype.showOff = function() {
+    console.log("I'm focusable!");
+};
+
+function main(args: string[]): void {
+    const button = new Button();
+    button.showOff();
+    button.setFocus(true);
+    button.click();
+}
+
+main([]);
