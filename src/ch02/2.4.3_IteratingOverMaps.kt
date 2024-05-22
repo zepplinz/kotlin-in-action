@@ -1,16 +1,12 @@
-package ch02.ex4_3_IteratingOverMaps
-
-import java.util.TreeMap
-
-fun main(args: Array<String>) {
-    val binaryReps = TreeMap<Char, String>()
-
-    for (c in 'A'..'F') {
-        val binary = Integer.toBinaryString(c.toInt())
-        binaryReps[c] = binary
+type BinaryReps = Map<string, string>;
+function main(): void {
+    const binaryReps: BinaryReps = new Map<string, string>();
+    for (let c = 'A'.charCodeAt(0); c <= 'F'.charCodeAt(0); c++) {
+        const binary = c.toString(2);
+        binaryReps.set(String.fromCharCode(c), binary);
     }
-
-    for ((letter, binary) in binaryReps) {
-        println("$letter = $binary")
+    for (const [letter, binary] of binaryReps) {
+        console.log(`${letter} = ${binary}`);
     }
 }
+main();
