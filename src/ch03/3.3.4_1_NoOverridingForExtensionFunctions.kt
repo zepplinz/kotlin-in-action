@@ -1,14 +1,15 @@
-package ch03.ex3_4_1_NoOverridingForExtensionFunctions
-
-open class View {
-    open fun click() = println("View clicked")
+class View {
+    click(): void {
+        console.log("View clicked");
+    }
 }
-
-class Button: View() {
-    override fun click() = println("Button clicked")
+class Button extends View {
+    click(): void {
+        console.log("Button clicked");
+    }
 }
-
-fun main(args: Array<String>) {
-    val view: View = Button()
-    view.click()
+function main(args: string[]): void {
+    const view: View = new Button();
+    view.click();
 }
+main([]);
