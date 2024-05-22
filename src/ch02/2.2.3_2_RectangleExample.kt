@@ -1,7 +1,4 @@
-package geometry.example
-
-import geometry.shapes.createRandomRectangle
-
-fun main(args: Array<String>) {
-    println(createRandomRectangle().isSquare)
+import { createRandomRectangle } from './geometry/shapes';
+function main(args: string[]): void {
+    console.log(createRandomRectangle().isSquare);
 }
