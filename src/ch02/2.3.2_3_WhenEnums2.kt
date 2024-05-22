@@ -1,14 +1,29 @@
-package ch02.ex3_2_3_WhenEnums2
-
-import ch02.colors.Color
-import ch02.colors.Color.*
-
-fun getWarmth(color: Color) = when(color) {
-    RED, ORANGE, YELLOW -> "warm"
-    GREEN -> "neutral"
-    BLUE, INDIGO, VIOLET -> "cold"
+enum Color {
+    RED,
+    ORANGE,
+    YELLOW,
+    GREEN,
+    BLUE,
+    INDIGO,
+    VIOLET
 }
-
-fun main(args: Array<String>) {
-    println(getWarmth(Color.ORANGE))
+function getWarmth(color: Color): string {
+    switch (color) {
+        case Color.RED:
+        case Color.ORANGE:
+        case Color.YELLOW:
+            return "warm";
+        case Color.GREEN:
+            return "neutral";
+        case Color.BLUE:
+        case Color.INDIGO:
+        case Color.VIOLET:
+            return "cold";
+        default:
+            return "unknown";
+    }
 }
+function main() {
+    console.log(getWarmth(Color.ORANGE));
+}
+main();
