@@ -1,27 +1,23 @@
-package ch03.ex3_3_3_UtilityFunctionsAsExtensions2
-
-fun <T> Collection<T>.joinToString(
-        separator: String = ", ",
-        prefix: String = "",
-        postfix: String = ""
-): String {
-    val result = StringBuilder(prefix)
-
-    for ((index, element) in this.withIndex()) {
-        if (index > 0) result.append(separator)
-        result.append(element)
-    }
-
-    result.append(postfix)
-    return result.toString()
+// UtilityFunctionsAsExtensions2.ts
+type JoinOptions = {
+    separator?: string;
+    prefix?: string;
+    postfix?: string;
+};
+function joinToString<T>(collection: T[], options: JoinOptions = {}): string {
+    const { separator = ", ", prefix = "", postfix = "" } = options;
+    let result = prefix;
+    collection.forEach((element, index) => {
+        if (index > 0) result += separator;
+        result += element;
+    });
+    result += postfix;
+    return result;
 }
-
-fun Collection<String>.join(
-        separator: String = ", ",
-        prefix: String = "",
-        postfix: String = ""
-) = joinToString(separator, prefix, postfix)
-
-fun main(args: Array<String>) {
-    println(listOf("one", "two", "eight").join(" "))
+function join(collection: string[], options: JoinOptions = {}): string {
+    return joinToString(collection, options);
 }
+function main(args: string[]): void {
+    console.log(join(["one", "two", "eight"], { separator: " " }));
+}
+main([]);
